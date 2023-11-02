@@ -2,18 +2,14 @@
 
 cd ../..
 
-# if [ ! -d cmakefiles ]; then
-    # mkdir cmakefiles;
-# fi
+cmake -S . -B "cmakefiles" -G"Unix Makefiles" -DCMAKE_BUILD_TYPE='Release' -DCMAKE_PREFIX_PATH='/usr/local/lib64'
 
-cmake -S . -B "cmakefile" -G"Unix Makefiles" -DCMAKE_BUILD_TYPE='Release'
-
-cmake --build . -j$(nproc)
+cmake --build cmakefiles -j$(nproc)
 
 error_code=$?
 
 if [ ${error_code} -ne 0 ]; then
-    echo "build failed.\n";
+    echo "Release build failed.\n";
 else
-    echo "build was succesfull.\n";
+    echo "Release build was succesfull.\n";
 fi
